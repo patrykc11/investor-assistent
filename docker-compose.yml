@@ -3,6 +3,6 @@ services:
   api:
     build: app
     volumes:
-      - './app:/app'
+      - './app:/api'
     ports:
       - '8080:8080'
