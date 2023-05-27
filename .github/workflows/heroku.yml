@@ -1,0 +1,30 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Login to Heroku
+      run: heroku container:login
+
+    - name: Build and push Docker image
+      run: |
+        heroku container:push -a investor-assistent web
+
+    - name: Release to Heroku
+      run: |
+        heroku container:release -a investor-assistent
