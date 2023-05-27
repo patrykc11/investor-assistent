@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.zip
+stock_data/
+stock_data.zip
+.idea/
+app/__pycache__
