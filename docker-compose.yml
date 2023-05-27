@@ -3,6 +3,6 @@ services:
   api:
     build: spp
     volumes:
-      - './src:/api'
+      - './app:/api'
     ports:
       - '8080:8080'

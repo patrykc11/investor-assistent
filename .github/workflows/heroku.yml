@@ -6,25 +6,26 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
+    # needs: static-analysis
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x
-
-    - name: Login to Heroku
-      run: heroku container:login
-
-    - name: Build and push Docker image
-      run: |
-        heroku container:push -a investor-assistent web
-
-    - name: Release to Heroku
-      run: |
-        heroku container:release -a investor-assistent
+      - uses: actions/checkout@v2
+      - name: Build app
+        working-directory: app
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          heroku container:login
+          heroku container:push web --app investor-assistent
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to Heroku
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          heroku container:login
+          heroku container:release web --app investor-assistent
