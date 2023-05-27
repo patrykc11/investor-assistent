@@ -4,6 +4,7 @@ import numpy as np
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 
+
 class Predicator:
     def __init__(self, ticker):
         model_trainer = ModelTrainer(ticker)
@@ -115,4 +116,5 @@ class Predicator:
     #             j = j + 1
     #         errors.append(diff)
     #     print(errors)
-    #     print('rzeczywista cena była wyższa od przewidywanej mając na uwadze to, że cena z dnia poprzedniego była niższa: ' + str(j) + ' razy')
+    #     print('rzeczywista cena była wyższa od przewidywanej mając
+    # na uwadze to, że cena z dnia poprzedniego była niższa: ' + str(j) + ' razy')

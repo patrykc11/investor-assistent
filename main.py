@@ -1,9 +1,9 @@
-import uvicorn as uvicorn
 import os
 from src.predicator import Predicator
-from fastapi import FastAPI, File, Depends, HTTPException, status, Request, BackgroundTasks
+from fastapi import FastAPI, BackgroundTasks
 
 app = FastAPI()
+
 
 def model_trained(ticker: str):
     if os.path.exists('./models/' + ticker + '_model.h5'):
@@ -11,6 +11,7 @@ def model_trained(ticker: str):
         return True
     else:
         return False
+
 
 @app.get("/{ticker}/predict/next-day")
 async def next_day_prediction(ticker: str, background_tasks: BackgroundTasks):
@@ -22,6 +23,7 @@ async def next_day_prediction(ticker: str, background_tasks: BackgroundTasks):
         background_tasks.add_task(Predicator, ticker)
     return 'I need to train myself, give me 30 minutes and try again'
 
+
 @app.get("/{ticker}/predict/next-days/{amount}")
 async def next_x_days_prediction(ticker: str, amount: int, background_tasks: BackgroundTasks):
     if model_trained(ticker):
@@ -31,6 +33,7 @@ async def next_x_days_prediction(ticker: str, amount: int, background_tasks: Bac
     else:
         background_tasks.add_task(Predicator, ticker)
     return 'I need to train myself, give me 30 minutes and try again'
+
 
 @app.get("/{ticker}/predict-without-loop/next-days/{amount}")
 async def next_x_days_prediction_without_loop(ticker: str, amount: int, background_tasks: BackgroundTasks):

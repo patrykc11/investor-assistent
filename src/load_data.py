@@ -2,6 +2,8 @@ import yfinance as yf
 import math
 from datetime import datetime, timedelta
 from sklearn.preprocessing import MinMaxScaler
+
+
 class StockData:
     def __init__(self, ticker):
         self.ticker = ticker
@@ -31,4 +33,3 @@ class StockData:
 
     def get_training_data_len(self):
         return self.training_data_len
-
