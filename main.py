@@ -1,6 +1,6 @@
 import uvicorn as uvicorn
 import os
-from predicator import Predicator
+from src.predicator import Predicator
 from fastapi import FastAPI, File, Depends, HTTPException, status, Request, BackgroundTasks
 
 app = FastAPI()
@@ -42,5 +42,5 @@ async def next_x_days_prediction_without_loop(ticker: str, amount: int, backgrou
         background_tasks.add_task(Predicator, ticker)
     return 'I need to train myself, give me 30 minutes and try again'
 
-if __name__ == "__main__":
- uvicorn.run("main:app", host="0.0.0.0", port=8080)
+# if __name__ == "__main__":
+#  uvicorn.run("main:app", host="0.0.0.0", port=8080)

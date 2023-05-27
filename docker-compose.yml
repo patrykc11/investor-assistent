@@ -1,8 +1,8 @@
 version: "3.9"
 services:
   api:
-    build: app
+    build: spp
     volumes:
-      - './app:/api'
+      - './src:/api'
     ports:
       - '8080:8080'
