@@ -133,3 +133,10 @@ stock_data/
 stock_data.zip
 .idea/
 app/__pycache__
+.DS_Store
+.idea/investor-assistent.iml
+.idea/investor-assistent.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.vscode/settings.json
