@@ -1,4 +1,5 @@
 import os
+import uvicorn
 from src.predicator import Predicator
 from fastapi import FastAPI, BackgroundTasks
 
