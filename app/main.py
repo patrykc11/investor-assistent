@@ -1,6 +1,6 @@
 import os
 import uvicorn
-from src.predicator import Predicator
+from predicator import Predicator
 from fastapi import FastAPI, BackgroundTasks
 
 app = FastAPI()
