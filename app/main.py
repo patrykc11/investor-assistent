@@ -15,6 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 def model_trained(ticker: str):
     if os.path.exists('./models/' + ticker + '_model.h5'):
         print('istnieje')
