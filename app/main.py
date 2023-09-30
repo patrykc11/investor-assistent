@@ -3,9 +3,17 @@ from os import environ
 import uvicorn
 from predicator import Predicator
 from fastapi import FastAPI, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def model_trained(ticker: str):
     if os.path.exists('./models/' + ticker + '_model.h5'):
