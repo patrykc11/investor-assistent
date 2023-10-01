@@ -29,7 +29,7 @@ async def next_day_prediction(ticker: str, background_tasks: BackgroundTasks):
     if model_trained(ticker):
         predicator = Predicator(ticker)
         next_price = predicator.predict_next_day()
-        return str(next_price)
+        return next_price
     else:
         background_tasks.add_task(Predicator, ticker)
     return 'I need to train myself, give me 30 minutes and try again'
@@ -40,7 +40,7 @@ async def next_x_days_prediction(ticker: str, amount: int, background_tasks: Bac
     if model_trained(ticker):
         predicator = Predicator(ticker)
         next_prices = predicator.predict_next_x_days(amount)
-        return str(next_prices)
+        return next_prices
     else:
         background_tasks.add_task(Predicator, ticker)
     return 'I need to train myself, give me 30 minutes and try again'
@@ -51,7 +51,7 @@ async def next_x_days_prediction_without_loop(ticker: str, amount: int, backgrou
     if model_trained(ticker):
         predicator = Predicator(ticker)
         next_prices = predicator.predict_next_x_days_without_loop(amount)
-        return str(next_prices)
+        return next_prices
     else:
         background_tasks.add_task(Predicator, ticker)
     return 'I need to train myself, give me 30 minutes and try again'
